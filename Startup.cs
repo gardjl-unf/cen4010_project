@@ -1,6 +1,8 @@
 using cen4010_project.Data;
+using cen4010_project.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -43,6 +45,8 @@ namespace cen4010_project
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             */
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IShelterRepository, IShelterRepository>();
             services.AddIdentity<AppUser, IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders()
@@ -51,8 +55,7 @@ namespace cen4010_project
                 .AddNewtonsoftJson();
             services.AddMemoryCache();
             services.AddSession();
-            services.AddControllersWithViews();
-            services.AddRazorPages();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,8 +72,6 @@ namespace cen4010_project
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            // Remove this for deployment!
-            app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseHttpsRedirection();
             app.UseStaticFiles();

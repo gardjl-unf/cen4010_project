@@ -10,7 +10,7 @@ namespace cen4010_project.Models
     public class Room
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid ID { get; set; }
         [Required]
         public string RoomType { get; set; }
         public string RoomDescription { get; set; }

@@ -19,7 +19,7 @@ namespace cen4010_project.Models
         public string ShelterWebsite { get; set; }
         public string ShelterDescription { get; set; }
         public string ShelterHours { get; set; }
-        public IRoomRepository { get; set; }
+        //public IRoomRepository Rooms { get; set; }
 
 }
 }
