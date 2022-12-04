@@ -1,12 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OpenBed.Models
 {
     public class Shelter
     {
-        [Key]
+        [ForeignKey("Id")]
+        public Guid Id { get; set; }
         public Guid ShelterID { get; set; }
         [Required]
         public string ShelterName { get; set; }
@@ -19,7 +22,8 @@ namespace OpenBed.Models
         public string ShelterWebsite { get; set; }
         public string ShelterDescription { get; set; }
         public string ShelterHours { get; set; }
-        //public IRoomRepository Rooms { get; set; }
+        [ForeignKey("RoomID")]
+        public virtual ICollection<Room> Rooms { get; set; }
 
 }
 }
