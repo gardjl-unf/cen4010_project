@@ -10,7 +10,7 @@ using cen4010_project.Data;
 namespace cen4010_project.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221201211627_Initial")]
+    [Migration("20221204213558_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -50,7 +50,8 @@ namespace cen4010_project
             services.AddIdentity<AppUser, IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders()
-                .AddRoles<IdentityRole<Guid>>();
+                .AddRoles<IdentityRole<Guid>>()
+                .AddDefaultUI();
             services.AddMvc(options => options.EnableEndpointRouting = false)
                 .AddNewtonsoftJson();
             services.AddMemoryCache();
