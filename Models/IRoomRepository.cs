@@ -8,5 +8,6 @@ namespace OpenBed.Models
     public interface IProductRepository
     {
         IEnumerable<Room> Rooms { get; }
+        public virtual IEnumerable<Room> GetRooms() => Rooms;
     }
 }

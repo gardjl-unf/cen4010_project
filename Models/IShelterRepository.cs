@@ -6,5 +6,6 @@ namespace OpenBed.Models
     public class IShelterRepository
     {
         IEnumerable<Shelter> Shelters { get; }
+        public virtual IEnumerable<Shelter> GetShelters() => Shelters;
     }
 }

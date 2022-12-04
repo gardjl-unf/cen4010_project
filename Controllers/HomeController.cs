@@ -20,6 +20,7 @@ namespace OpenBed.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.UserID = User.FindFirst("Id")?.Value;
             return View();
         }
 
