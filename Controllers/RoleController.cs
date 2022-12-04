@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using cen4010_project.Models;
+using OpenBed.Models;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System;
 
-namespace cen4010_project.Controllers
+namespace OpenBed.Controllers
 {
     public class RoleController : Controller
     {

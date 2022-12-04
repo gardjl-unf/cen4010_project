@@ -2,7 +2,7 @@
 
 namespace OpenBed.Controllers
 {
-    public class AccountController : Controller
+    public class ShelterController : Controller
     {
         public IActionResult Index()
         {

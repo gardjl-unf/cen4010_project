@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 
-namespace cen4010_project.Models
+namespace OpenBed.Models
 {
     public class AppUser : IdentityUser<Guid>
     {

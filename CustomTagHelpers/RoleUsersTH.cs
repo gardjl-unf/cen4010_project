@@ -1,11 +1,11 @@
-﻿using cen4010_project.Models;
+﻿using OpenBed.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace cen4010_project.CustomTagHelpers
+namespace OpenBed.CustomTagHelpers
 {
     [HtmlTargetElement("td", Attributes = "i-role")]
     public class RoleUsersTH : TagHelper

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace cen4010_project.Migrations
+namespace OpenBed.Migrations
 {
     public partial class Initial : Migration
     {

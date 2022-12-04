@@ -1,5 +1,5 @@
-using cen4010_project.Data;
-using cen4010_project.Models;
+using OpenBed.Data;
+using OpenBed.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace cen4010_project
+namespace OpenBed
 {
     public class Startup
     {

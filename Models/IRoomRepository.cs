@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace cen4010_project.Models
+namespace OpenBed.Models
 {
     public interface IProductRepository
     {

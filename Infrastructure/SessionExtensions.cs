@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace cen4010_project.Infrastructure
+namespace OpenBed.Infrastructure
 {
     public static class SessionExtensions
     {

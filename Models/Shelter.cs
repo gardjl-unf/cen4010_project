@@ -2,7 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace cen4010_project.Models
+namespace OpenBed.Models
 {
     public class Shelter
     {

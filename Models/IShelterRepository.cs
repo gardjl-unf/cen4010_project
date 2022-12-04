@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
-namespace cen4010_project.Models
+namespace OpenBed.Models
 {
     public class IShelterRepository
     {

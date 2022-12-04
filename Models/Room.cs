@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Threading.Tasks;
 
-namespace cen4010_project.Models
+namespace OpenBed.Models
 {
     public class Room
     {

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using cen4010_project.Data;
+using OpenBed.Data;
 
-namespace cen4010_project.Migrations
+namespace OpenBed.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -148,7 +148,7 @@ namespace cen4010_project.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("cen4010_project.Models.AppUser", b =>
+            modelBuilder.Entity("OpenBed.Models.AppUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -214,7 +214,7 @@ namespace cen4010_project.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("cen4010_project.Models.Shelter", b =>
+            modelBuilder.Entity("OpenBed.Models.Shelter", b =>
                 {
                     b.Property<Guid>("ShelterID")
                         .ValueGeneratedOnAdd()
@@ -267,7 +267,7 @@ namespace cen4010_project.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
-                    b.HasOne("cen4010_project.Models.AppUser", null)
+                    b.HasOne("OpenBed.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -276,7 +276,7 @@ namespace cen4010_project.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
-                    b.HasOne("cen4010_project.Models.AppUser", null)
+                    b.HasOne("OpenBed.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -291,7 +291,7 @@ namespace cen4010_project.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("cen4010_project.Models.AppUser", null)
+                    b.HasOne("OpenBed.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -300,7 +300,7 @@ namespace cen4010_project.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
-                    b.HasOne("cen4010_project.Models.AppUser", null)
+                    b.HasOne("OpenBed.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
