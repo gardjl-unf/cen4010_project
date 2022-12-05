@@ -9,9 +9,16 @@
     @if (Model != null)
     {
         <p>There are @Model.GetShelters().Count() shelters in the database.</p>
+		@if (Model.ContainsID(ViewBag.UserID)) {
+			<p>Your shelter is @Model.GetShelter(ViewBag.UserID).Name</p>
+        }
+		else {
+			<p>Add your shelter information today!</p>
+        }
     }
     else
     {
         <p>There are no shelters in the database.</p>
+        <p>Add your shelter information today!</p>
     }
 </div>
