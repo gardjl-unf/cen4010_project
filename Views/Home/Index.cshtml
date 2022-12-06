@@ -12,10 +12,10 @@
                 @if (Model != null) {
 		            @if (Model.ContainsID(ViewBag.UserID)) {
                         // Replace this with shelter information
-			            <p>@Model.GetShelter(ViewBag.UserID).Name</p>
+			            <p class="text-center">@Model.GetShelter(ViewBag.UserID).Name</p>
                     }
 		            else {
-			            <p>Add your shelter information today!</p>
+			            <p><a asp-controller="Account">Add your shelter information today!</a></p>
                     }
                 }
                 else
