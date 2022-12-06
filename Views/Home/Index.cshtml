@@ -4,21 +4,34 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<div class="text-center container">
     <h1 class="display-4">Welcome</h1>
-    @if (Model != null)
-    {
-        <p>There are @Model.GetShelters().Count() shelters in the database.</p>
-		@if (Model.ContainsID(ViewBag.UserID)) {
-			<p>Your shelter is @Model.GetShelter(ViewBag.UserID).Name</p>
+	<div class="row">
+        @if (User.Identity.IsAuthenticated) {
+	        <div class="col">
+                @if (Model != null) {
+		            @if (Model.ContainsID(ViewBag.UserID)) {
+                        // Replace this with shelter information
+			            <p>@Model.GetShelter(ViewBag.UserID).Name</p>
+                    }
+		            else {
+			            <p>Add your shelter information today!</p>
+                    }
+                }
+                else
+                {
+                    <p>Add your shelter information today!</p>
+                }
+            </div>
         }
-		else {
-			<p>Add your shelter information today!</p>
-        }
-    }
-    else
-    {
-        <p>There are no shelters in the database.</p>
-        <p>Add your shelter information today!</p>
-    }
+	    <div class="col">
+		    @if (Model != null)
+            {
+                <p>There are @Model.GetShelters().Count() shelters in the database.</p>
+            }
+		    else {
+                    <p>There are no shelters in the database.</p>
+            }
+        </div>
+	</div>
 </div>
