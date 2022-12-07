@@ -1,4 +1,5 @@
-﻿@model ShelterListViewModel
+﻿@using OpenBed.Models.ViewModels
+@model ShelterListViewModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -7,29 +8,26 @@
 <div class="text-center container">
     <h1 class="display-4">Welcome</h1>
 	<div class="row">
-        @if (User.Identity.IsAuthenticated) {
-	        <div class="col">
+        <div class="col">
+            @if (User.Identity.IsAuthenticated) {      
                 @if (Model != null) {
 		            //Display Shelter Information
                 }
 		        else {
                     <p><a class="nav-link text-dark" asp-controller="Account" asp-action="Index">Add your shelter information today!</a></p>
                 }
-            </div>
-        }
-		else {
-            <div class="col">
-                <p><a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a></p>
-                <p><a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a></p>
-            </div>
-        }
+            }
+		    else {
+                // Onboard shit 
+            }
+        </div>
 	    <div class="col">
 		    @if (Model != null)
             {
-                <p>There are @Model.GetShelters().Count() shelters in the database.</p>
+                <p>There are @Model.Count() shelters in the database.</p>
             }
 		    else {
-                    <p>There are no shelters in the database.</p>
+                <p>There are no shelters in the database.</p>
             }
         </div>
 	</div>
