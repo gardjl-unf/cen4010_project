@@ -54,17 +54,17 @@ namespace OpenBed
                 .AddDefaultTokenProviders()
                 .AddRoles<IdentityRole<Guid>>()
                 .AddDefaultUI();
-            services.AddMvc(options => options.EnableEndpointRouting = false)
-                .AddNewtonsoftJson();
             services.AddMemoryCache();
             services.AddSession();
             var mapperConfig = new MapperConfiguration(mc =>
             {
+                mc.AllowNullDestinationValues = false;
                 mc.AddProfile(new MappingProfile());
             });
-
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
+            services.AddMvc(options => options.EnableEndpointRouting = false)
+                .AddNewtonsoftJson();
 
         }
 

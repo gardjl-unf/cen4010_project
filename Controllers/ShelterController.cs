@@ -22,7 +22,8 @@ namespace OpenBed.Controllers
         [Authorize]
         public ViewResult Index()
         {
-            ShelterViewModel shelter = _mapper.Map<ShelterViewModel>(_shelterRepository.Shelters.FirstOrDefault(p => p.ShelterID == Guid.Parse(User.Identity.Name))) ?? new ShelterViewModel();
+            ShelterViewModel shelter = new ShelterViewModel();
+            //ShelterViewModel shelter = _mapper.Map<ShelterViewModel>(_shelterRepository.Shelters.FirstOrDefault(p => p.ShelterID == Guid.Parse(User.Identity.Name)));
             return View(shelter);
         }
         [HttpPost]

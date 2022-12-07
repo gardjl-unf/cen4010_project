@@ -4,9 +4,10 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<script type="text/javascript" src="~/js/collapsible.js"></script>
 
 <div class="text-center container">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-3">Welcome</h1>
 	<div class="row">
         <div class="col">
             @if (User.Identity.IsAuthenticated) {      
@@ -14,20 +15,158 @@
 		            //Display Shelter Information
                 }
 		        else {
-                    <p><a class="nav-link text-dark" asp-controller="Shelter" asp-action="Index">Add your shelter information today!</a></p>
+                    <h1 class="display-4">
+                        <!--
+                        This is the actual code for a missing shelter!
+                        <a asp-controller="Shelter" asp-action="Index">Add Shelter Information</a>
+
+
+                        BEGIN MOCKUP
+                        -->
+                        Administrator Shelter
+                    </h1>
+                    <div class="container">
+                        <div class="row mb-2">
+                            <div class="col float-left">
+                                <h2 class="display-5">
+                                    Dormitory
+                                </h2>
+                            </div>
+                            <div class="col float-right w-auto">
+                                <div class="row">
+                                <button class="btn btn-danger btn-sm" asp-controller="Room" asp-action="Decrease"><i class="fa fa-minus"></i></button>
+                                <div class="num"><h2 class="display-5">45</h2></div>
+                                <button class="btn btn-success btn-sm" asp-controller="Room" asp-action="Increase"><i class="fa fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col float-left">
+                                <h2 class="display-5">
+                                    Private 1
+                                </h2>
+                            </div>
+                            <div class="col float-right w-auto">
+                                <div class="row">
+                                <button class="btn btn-danger btn-sm" asp-controller="Room" asp-action="Decrease"><i class="fa fa-minus"></i></button>
+                                <div class="num"><h2 class="display-5">4</h2></div>
+                                <button class="btn btn-success btn-sm" asp-controller="Room" asp-action="Increase"><i class="fa fa-plus"></i></button>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col float-left">
+                                <h2 class="display-5">
+                                    Private 2
+                                </h2>
+                            </div>
+                            <div class="col float-right w-auto">
+                                <div class="row">
+                                <button class="btn btn-danger btn-sm" asp-controller="Room" asp-action="Decrease"><i class="fa fa-minus"></i></button>
+                                <div class="num"><h2 class="display-5">2</h2></div>
+                                <button class="btn btn-success btn-sm" asp-controller="Room" asp-action="Increase"><i class="fa fa-plus"></i></button>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col float-left">
+                                <h2 class="display-5">
+                                    Private 3
+                                </h2>
+                            </div>
+                            <div class="col float-right w-auto">
+                                        <div class="row">
+                                <button class="btn btn-danger btn-sm" asp-controller="Room" asp-action="Decrease"><i class="fa fa-minus"></i></button>
+                                <div class="num"><h2 class="display-5">1</h2></div>
+                                <button class="btn btn-success btn-sm" asp-controller="Room" asp-action="Increase"><i class="fa fa-plus"></i></button>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
                 }
             }
 		    else {
-                // Onboard shit 
+                <h1 class="display-3">
+                    Please create your account and add your shelter information!
+                </h1>
             }
         </div>
 	    <div class="col">
 		    @if (Model != null)
             {
-                <p>There are @Model.Count() shelters in the database.</p>
+                <p>There are .Model.Count() shelters in the database.</p>
             }
-		    else {
+		    else { 
+                <!--
+                This is the actual code for empty database!
                 <p>There are no shelters in the database.</p>
+                
+                BEGIN MOCKUP
+                -->
+                <div class="container">
+                    <div class="row mb-2">
+                            <h1 class="display-4">
+                                Trinity Rescue Mission
+                            </h1>
+                        <button class="display-5 collapsible">
+                                 56/273 Beds Availibile!
+                            </button>
+                        <div class="collapsible collapsiblecontent">
+                            <div>
+                                Room 1 (4)
+                            </div>
+                            <div>
+                                Room 2 (4)
+                            </div>
+                            <div>
+                                Room 3 (4)
+                            </div>
+                            <div>
+                                Room 4 (4)
+                            </div>
+                            <div>
+                                Room 5 (4)
+                            </div>
+                            <div>
+                                Room 6 (4)
+                            </div>
+                            <div>
+                                Room 7 (4)
+                            </div>
+                            </div>
+                        </div>
+                    <div class="row mb-2">
+                        <h1 class="display-4">
+                            Salvation Army
+                        </h1>
+                        <button class="display-5 collapsible">
+                            56/273 Beds Availibile!
+                        </button>
+                        <div class="collapsible collapsiblecontent">
+                            <div>
+                                Room 1 (4)
+                            </div>
+                            <div>
+                                Room 2 (4)
+                            </div>
+                            <div>
+                                Room 3 (4)
+                            </div>
+                            <div>
+                                Room 4 (4)
+                            </div>
+                            <div>
+                                Room 5 (4)
+                            </div>
+                            <div>
+                                Room 6 (4)
+                            </div>
+                            <div>
+                                Room 7 (4)
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
         </div>
 	</div>
