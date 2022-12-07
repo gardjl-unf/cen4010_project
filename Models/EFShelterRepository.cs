@@ -3,6 +3,7 @@ using OpenBed.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using OpenBed.Models.ViewModels;
 
 namespace OpenBed.Models
 {
@@ -15,11 +16,11 @@ namespace OpenBed.Models
         }
         public IEnumerable<Shelter> Shelters => context.Shelters;
         public Shelter GetShelter(Guid id) => context.Shelters.FirstOrDefault(s => s.ShelterID == id);
-        public void SaveShelter(Shelter shelter)
+        public void SaveShelter(ShelterViewModel shelter)
         {
             if (shelter.ShelterID == null)
             {
-                context.Shelters.Add(shelter);
+                context.Shelters.Add(new Shelter());
             }
             else
             {

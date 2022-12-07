@@ -1,0 +1,31 @@
+﻿@using OpenBed.Models.ViewModels
+//model RoomListViewModel
+
+<div class="col-md-4 order-md-1">
+
+    <h4 class="mb-3">Rooms</h4>
+    @foreach (Room room in Model)
+    {
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form asp-action="SaveRoom" method="post">
+            <div class="row">
+                <input type="hidden" asp-f="room.Id" />
+                <div class="col-md-8 mb-3">
+                    <label for="Room.RoomName">Room Name</label>
+                    <input type="text" class="form-control text-left" asp-f="room.RoomName" placeholder="Room Name" value="">
+                </div>
+                <div class="col-md-8 mb-3">
+                    <label for="Room.RoomDescription">Room Description</label>
+                    <textarea type="text" rows="5" class="form-control text-left" asp-f="Room.roomDescription" placeholder="Description"></textarea>
+                </div>
+                <div class="col-md-8 mb-3">
+                    <label for="Room.RoomCapacity">Room Capacity</label>
+                    <input type="text" class="form-control text-left" asp-f="Room.roomCapacity" placeholder="Room Capacity">
+                </div>
+            </div>
+            <br />
+            <br />
+            <button class="btn btn-primary btn-lg btn-block" type="submit"><i class="fa fa-save"></i> Save Room</button>
+        </form>
+    }
+</div>

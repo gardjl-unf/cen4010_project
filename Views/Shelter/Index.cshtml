@@ -4,3 +4,62 @@
 @{
     ViewData["Title"] = "Your Shelter Information";
 }
+
+<script type="text/javascript" src="~/lib/country-region-selector/crs.min.js"></script>
+
+<div class="row">
+    <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Shelter Information</h4>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form asp-action="SaveShelter" method="post">
+            <div class="row">
+                <input type="hidden" asp-for="Id" />
+                <div class="col-md-8 mb-3">
+                    <label for="ShelterName">Shelter Name</label>
+                    <input type="text" class="form-control text-left" asp-for="ShelterName" placeholder="Shelter Name" value="">
+                </div>
+                <div class="col-md-8 mb-3">
+                    <label for="ShelterDescription">Shelter Description</label>
+                    <textarea type="text" rows="5" class="form-control text-left" asp-for="ShelterDescription" placeholder="Description"></textarea>
+                </div>
+                <div class="col-md-8 mb-3">
+                    <label for="ShelterAddress">Street Address</label>
+                    <input type="text" class="form-control text-left" asp-for="ShelterAddress" placeholder="Street Address">
+                </div>
+            </div>
+            <div class="row">
+                <select hidden class="crs-country" id="country" data-region-id="crs-region" data-preferred="US,CA,MX" data-default-value="US" data-value="shortcode"></select>
+                <div class="col-md-3 mb-3">
+                    <label for="ShelterState">State</label>
+                    <select class="custom-select d-block w-100" asp-for="ShelterState" id="crs-region" data-default-value="FL" data-value="shortcode"></select>
+                </div>
+                    <div class="col-md-4 mb-3">
+                    <label for="ShelterCity">City</label>
+                        <input type="text" class="form-control text-left" asp-for="ShelterCity" placeholder="City">
+                    </div>
+                <div class="col-md-2 mb-2">
+                    <label for="ShelterZip">Zip</label>
+                        <input type="text" class="form-control text-left" asp-for="ShelterZip" placeholder="00000">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mb-3">
+                    <label for="ShelterPhone">Phone Number</label>
+                    <input type="text" class="form-control text-left" asp-for="ShelterPhone" placeholder="(904) 867-5309" value="">
+                </div>
+                <div class="col-md-8 mb-3">
+                    <label for="ShelterEmail">Email Address</label>
+                    <input type="text" class="form-control text-left" asp-for="ShelterEmail" placeholder="Description">
+                </div>
+                <div class="col-md-8 mb-3">
+                    <label for="ShelterWebsite">Website Address</label>
+                    <input type="text" class="form-control text-left" asp-for="ShelterWebsite" placeholder="Street Address">
+                </div>
+            </div>
+            <br />
+            <br />
+            <button class="btn btn-primary btn-lg btn-block" type="submit"><i class="fa fa-save"></i> Save Shelter</button>
+        </form>
+    </div>
+    
+</div>

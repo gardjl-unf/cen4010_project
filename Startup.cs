@@ -1,5 +1,6 @@
 using OpenBed.Data;
 using OpenBed.Models;
+using OpenBed.Models.ViewModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -15,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace OpenBed
 {
@@ -56,6 +58,13 @@ namespace OpenBed
                 .AddNewtonsoftJson();
             services.AddMemoryCache();
             services.AddSession();
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
         }
 

@@ -6,25 +6,31 @@ using OpenBed.Models;
 using OpenBed.Models.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections;
+using AutoMapper;
 
 namespace OpenBed.Controllers
 {
     public class ShelterController : Controller
     {
         private IShelterRepository _shelterRepository;
-        public int PageSize = 4;
-        public ShelterController(IShelterRepository repo)
+        private readonly IMapper _mapper;
+        public ShelterController(IShelterRepository repo, IMapper mapper)
         {
             _shelterRepository = repo;
         }
         [Authorize]
         public ViewResult Index()
         {
-            return View(new ShelterViewModel
-            {
-                Shelter = _shelterRepository.Shelters.Where(p => p.ShelterID == Guid.Parse(User.Identity.Name)).FirstOrDefault()
-
-            });
+            ShelterViewModel shelter = _mapper.Map<ShelterViewModel>(_shelterRepository.Shelters.FirstOrDefault(p => p.ShelterID == Guid.Parse(User.Identity.Name))) ?? new ShelterViewModel();
+            return View(shelter);
+        }
+        [HttpPost]
+        [Authorize]
+        public IActionResult SaveShelter(ShelterViewModel shelter) 
+        {
+            _shelterRepository.SaveShelter(shelter);
+            return View("Index");
         }
     }
 }
