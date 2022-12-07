@@ -1,4 +1,4 @@
-﻿@model IShelterRepository
+﻿@model ShelterListViewModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -10,18 +10,17 @@
         @if (User.Identity.IsAuthenticated) {
 	        <div class="col">
                 @if (Model != null) {
-		            @if (Model.ContainsID(ViewBag.UserID)) {
-                        // Replace this with shelter information
-			            <p class="text-center">@Model.GetShelter(ViewBag.UserID).Name</p>
-                    }
-		            else {
-			            <p><a asp-controller="Account">Add your shelter information today!</a></p>
-                    }
+		            //Display Shelter Information
                 }
-                else
-                {
-                    <p>Add your shelter information today!</p>
+		        else {
+                    <p><a class="nav-link text-dark" asp-controller="Account" asp-action="Index">Add your shelter information today!</a></p>
                 }
+            </div>
+        }
+		else {
+            <div class="col">
+                <p><a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a></p>
+                <p><a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a></p>
             </div>
         }
 	    <div class="col">

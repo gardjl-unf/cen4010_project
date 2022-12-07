@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace OpenBed.Models
+namespace OpenBed.ViewModels
 {
     public class Shelter
     {

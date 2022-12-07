@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using System;
 using System.Net.Http;
 using System.Security.Claims;
+using System.Linq;
+
 
 namespace OpenBed.Controllers
 {
@@ -17,7 +19,11 @@ namespace OpenBed.Controllers
         public AccountController (IShelterRepository iShelterRepository)
         {
             repo = iShelterRepository;
-            shelter = repo.GetShelter(Guid.Parse(this.User.FindFirst(ClaimTypes.NameIdentifier).Value));
+            // set shelter to the shelter of the currently logged in user
+            // Get current user id
+            var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            shelter = repo.GetShelters().Where(s => s.ShelterID == userId).FirstOrDefault();
         }
         [Authorize]
         public ViewResult Index()

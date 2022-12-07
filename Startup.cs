@@ -46,7 +46,7 @@ namespace OpenBed
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             */
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddTransient<IShelterRepository, IShelterRepository>();
+            services.AddTransient<IShelterRepository, EFShelterRepository>();
             services.AddIdentity<AppUser, IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders()
