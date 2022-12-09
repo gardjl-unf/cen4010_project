@@ -12,7 +12,6 @@ namespace OpenBed.Models.ViewModels
     {
         [ForeignKey("Id")]
         public Guid Id { get; set; }
-        public Guid ShelterID { get; set; }
         [Required]
         public string ShelterName { get; set; }
         public string ShelterAddress { get; set; }
@@ -24,7 +23,7 @@ namespace OpenBed.Models.ViewModels
         public string ShelterWebsite { get; set; }
         public string ShelterDescription { get; set; }
         public string ShelterHours { get; set; }
-        [ForeignKey("RoomID")]
-        public virtual ICollection<Room> Rooms { get; set; }
+        [ForeignKey("Id")]
+        public ICollection<Room> Rooms { get; set; }
     }
 }

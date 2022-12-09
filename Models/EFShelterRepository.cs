@@ -15,31 +15,75 @@ namespace OpenBed.Models
             context = ctx;
         }
         public IEnumerable<Shelter> Shelters => context.Shelters;
-        public Shelter GetShelter(Guid id) => context.Shelters.FirstOrDefault(s => s.ShelterID == id);
+        public ShelterViewModel GetShelter(Guid id) {
+            Shelter dbEntry = context.Shelters.FirstOrDefault(s => s.Id == id);
+            if (dbEntry == null)
+            {
+                dbEntry = new Shelter();
+                context.Shelters.Add(dbEntry);
+                
+            }
+            return new ShelterViewModel
+            {
+                Id = id,
+                ShelterName = dbEntry.ShelterName,
+                ShelterAddress = dbEntry.ShelterAddress,
+                ShelterCity = dbEntry.ShelterCity,
+                ShelterState = dbEntry.ShelterState,
+                ShelterZip = dbEntry.ShelterZip,
+                ShelterPhone = dbEntry.ShelterPhone,
+                ShelterEmail = dbEntry.ShelterEmail,
+                ShelterWebsite = dbEntry.ShelterWebsite,
+                ShelterDescription = dbEntry.ShelterDescription,
+                ShelterHours = dbEntry.ShelterHours
+            };
+        }
         public void SaveShelter(ShelterViewModel shelter)
         {
-            if (shelter.ShelterID == null)
+            Shelter dbEntry = context.Shelters.FirstOrDefault(s => s.Id == shelter.Id);
+            if (dbEntry != null)
             {
-                context.Shelters.Add(new Shelter());
+                dbEntry.ShelterName = shelter.ShelterName;
+                dbEntry.ShelterAddress = shelter.ShelterAddress;
+                dbEntry.ShelterCity = shelter.ShelterCity;
+                dbEntry.ShelterState = shelter.ShelterState;
+                dbEntry.ShelterZip = shelter.ShelterZip;
+                dbEntry.ShelterPhone = shelter.ShelterPhone;
+                dbEntry.ShelterEmail = shelter.ShelterEmail;
+                dbEntry.ShelterWebsite = shelter.ShelterWebsite;
+                dbEntry.ShelterDescription = shelter.ShelterDescription;
+                dbEntry.ShelterHours = shelter.ShelterHours;
             }
             else
             {
-                Shelter dbEntry = context.Shelters
-                .FirstOrDefault(s => s.ShelterID == shelter.ShelterID);
-                if (dbEntry != null)
-                {
-                    dbEntry.ShelterName = shelter.ShelterName;
-                    dbEntry.ShelterAddress = shelter.ShelterAddress;
-                    dbEntry.ShelterCity = shelter.ShelterCity;
-                    dbEntry.ShelterState = shelter.ShelterState;
-                    dbEntry.ShelterZip = shelter.ShelterZip;
-                    dbEntry.ShelterPhone = shelter.ShelterPhone;
-                    dbEntry.ShelterEmail = shelter.ShelterEmail;
-                    dbEntry.ShelterWebsite = shelter.ShelterWebsite;
-                    dbEntry.ShelterDescription = shelter.ShelterDescription;
-                    dbEntry.ShelterHours = shelter.ShelterHours;
-                }
+                context.Add(new Shelter {
+                    Id = shelter.Id,
+                    ShelterName = shelter.ShelterName,
+                    ShelterAddress = shelter.ShelterAddress,
+                    ShelterCity = shelter.ShelterCity,
+                    ShelterState = shelter.ShelterState,
+                    ShelterZip = shelter.ShelterZip,
+                    ShelterPhone = shelter.ShelterPhone,
+                    ShelterEmail = shelter.ShelterEmail,
+                    ShelterWebsite = shelter.ShelterWebsite,
+                    ShelterDescription = shelter.ShelterDescription,
+                    ShelterHours = shelter.ShelterHours
+                });
             }
+            context.SaveChanges();
+        }
+        public ShelterListViewModel GetShelters()
+        {
+            ShelterListViewModel shelters = new ShelterListViewModel();
+            foreach (Shelter s in Shelters.ToList())
+            {
+                shelters.Shelters.Append(GetShelter(s.Id));
+            }
+            return shelters;
+        }
+        public int GetShelterCount()
+        {
+            return Shelters.Count();
         }
     }
 }

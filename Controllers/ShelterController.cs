@@ -4,26 +4,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using OpenBed.Models;
 using OpenBed.Models.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Collections;
 using AutoMapper;
+using OpenBed.Service;
 
 namespace OpenBed.Controllers
 {
     public class ShelterController : Controller
     {
-        private IShelterRepository _shelterRepository;
-        private readonly IMapper _mapper;
-        public ShelterController(IShelterRepository repo, IMapper mapper)
+        private readonly IShelterRepository _shelterRepository;
+        private readonly IUserService _userService;
+        public ShelterController(IShelterRepository repo, IUserService usrSvc)
         {
             _shelterRepository = repo;
+            _userService = usrSvc;
         }
         [Authorize]
         public ViewResult Index()
         {
-            ShelterViewModel shelter = new ShelterViewModel();
-            //ShelterViewModel shelter = _mapper.Map<ShelterViewModel>(_shelterRepository.Shelters.FirstOrDefault(p => p.ShelterID == Guid.Parse(User.Identity.Name)));
+            ShelterViewModel shelter = _shelterRepository.GetShelter(_userService.GetUserId());      
             return View(shelter);
         }
         [HttpPost]
@@ -31,7 +29,7 @@ namespace OpenBed.Controllers
         public IActionResult SaveShelter(ShelterViewModel shelter) 
         {
             _shelterRepository.SaveShelter(shelter);
-            return View("Index");
+            return View("Index", shelter);
         }
     }
 }

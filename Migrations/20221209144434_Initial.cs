@@ -50,7 +50,7 @@ namespace OpenBed.Migrations
                 name: "Shelters",
                 columns: table => new
                 {
-                    ShelterID = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     ShelterName = table.Column<string>(nullable: false),
                     ShelterAddress = table.Column<string>(nullable: true),
                     ShelterCity = table.Column<string>(nullable: true),
@@ -64,7 +64,7 @@ namespace OpenBed.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Shelters", x => x.ShelterID);
+                    table.PrimaryKey("PK_Shelters", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -173,6 +173,26 @@ namespace OpenBed.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Rooms",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    RoomType = table.Column<string>(nullable: false),
+                    RoomDescription = table.Column<string>(nullable: true),
+                    NumberOfBeds = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rooms", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Rooms_Shelters_Id",
+                        column: x => x.Id,
+                        principalTable: "Shelters",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -231,13 +251,16 @@ namespace OpenBed.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Shelters");
+                name: "Rooms");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Shelters");
         }
     }
 }

@@ -216,7 +216,7 @@ namespace OpenBed.Migrations
 
             modelBuilder.Entity("OpenBed.Models.Room", b =>
                 {
-                    b.Property<Guid>("RoomID")
+                    b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("NumberOfBeds")
@@ -229,10 +229,7 @@ namespace OpenBed.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ShelterId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("RoomID");
+                    b.HasKey("Id");
 
                     b.ToTable("Rooms");
                 });
@@ -257,9 +254,6 @@ namespace OpenBed.Migrations
 
                     b.Property<string>("ShelterHours")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ShelterID")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ShelterName")
                         .IsRequired()
@@ -337,7 +331,7 @@ namespace OpenBed.Migrations
                 {
                     b.HasOne("OpenBed.Models.Shelter", null)
                         .WithMany("Rooms")
-                        .HasForeignKey("RoomID")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

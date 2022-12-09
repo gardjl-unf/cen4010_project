@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using OpenBed.Service;
 
 namespace OpenBed
 {
@@ -56,16 +57,9 @@ namespace OpenBed
                 .AddDefaultUI();
             services.AddMemoryCache();
             services.AddSession();
-            var mapperConfig = new MapperConfiguration(mc =>
-            {
-                mc.AllowNullDestinationValues = false;
-                mc.AddProfile(new MappingProfile());
-            });
-            IMapper mapper = mapperConfig.CreateMapper();
-            services.AddSingleton(mapper);
             services.AddMvc(options => options.EnableEndpointRouting = false)
                 .AddNewtonsoftJson();
-
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
