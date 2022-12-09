@@ -10,9 +10,12 @@ namespace OpenBed.Models
 {
     public class Room
     {
+        [Required]
         [ForeignKey("Id")]
         public Guid Id { get; set; }
         [Required]
+        [Key]
+        public Guid RoomId { get; set; }
         public string RoomType { get; set; }
         public string RoomDescription { get; set; }
         [Required]
