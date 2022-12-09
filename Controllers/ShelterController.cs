@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using OpenBed.Models;
 using OpenBed.Models.ViewModels;
-using AutoMapper;
 using OpenBed.Service;
 
 namespace OpenBed.Controllers

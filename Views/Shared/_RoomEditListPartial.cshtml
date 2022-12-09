@@ -1,0 +1,7 @@
+﻿@using OpenBed.Models.ViewModels
+@model RoomListViewModel
+
+@foreach (RoomViewModel room in Model.Rooms)
+{
+    @Html.Partial("_RoomEditPartial", room)
+}

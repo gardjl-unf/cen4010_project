@@ -1,0 +1,8 @@
+﻿@using OpenBed.Models.ViewModels
+
+@model ShelterListViewModel
+
+@foreach (ShelterViewModel shelter in Model.Shelters)
+{
+    @Html.Partial("_ShelterSummaryPartial", shelter)
+}
