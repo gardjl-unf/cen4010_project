@@ -1,31 +1,27 @@
 ﻿@using OpenBed.Models.ViewModels
-//model RoomListViewModel
+@model RoomViewModel
 
 <div class="col-md-4 order-md-1">
-
     <h4 class="mb-3">Rooms</h4>
-    @foreach (Room room in Model)
-    {
         <div asp-validation-summary="All" class="text-danger"></div>
         <form asp-action="SaveRoom" method="post">
             <div class="row">
-                <input type="hidden" asp-f="room.Id" />
+                <input type="hidden" asp-for="RoomId" />
                 <div class="col-md-8 mb-3">
-                    <label for="Room.RoomName">Room Name</label>
-                    <input type="text" class="form-control text-left" asp-f="room.RoomName" placeholder="Room Name" value="">
+                    <label for="RoomType">Room Type</label>
+                    <input type="text" class="form-control text-left" asp-for="RoomType" placeholder="Room Type" value="@Model.RoomType">
                 </div>
                 <div class="col-md-8 mb-3">
-                    <label for="Room.RoomDescription">Room Description</label>
-                    <textarea type="text" rows="5" class="form-control text-left" asp-f="Room.roomDescription" placeholder="Description"></textarea>
+                    <label for="RoomDescription">Room Description</label>
+                <textarea type="text" rows="5" class="form-control text-left" asp-f="RoomDescription" placeholder="Description" value="@Model.RoomDescription"></textarea>
                 </div>
                 <div class="col-md-8 mb-3">
-                    <label for="Room.RoomCapacity">Room Capacity</label>
-                    <input type="text" class="form-control text-left" asp-f="Room.roomCapacity" placeholder="Room Capacity">
+                    <label for="NumberOfBeds">Room Capacity</label>
+                    <input type="text" class="form-control text-left" asp-f="NumberOfBeds" placeholder="Room Capacity" value="@Model.NumberOfBeds">
                 </div>
             </div>
             <br />
             <br />
             <button class="btn btn-primary btn-lg btn-block" type="submit"><i class="fa fa-save"></i> Save Room</button>
         </form>
-    }
 </div>

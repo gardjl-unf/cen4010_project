@@ -177,14 +177,15 @@ namespace OpenBed.Migrations
                 name: "Rooms",
                 columns: table => new
                 {
+                    RoomId = table.Column<Guid>(nullable: false),
                     Id = table.Column<Guid>(nullable: false),
-                    RoomType = table.Column<string>(nullable: false),
+                    RoomType = table.Column<string>(nullable: true),
                     RoomDescription = table.Column<string>(nullable: true),
                     NumberOfBeds = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Rooms", x => x.Id);
+                    table.PrimaryKey("PK_Rooms", x => x.RoomId);
                     table.ForeignKey(
                         name: "FK_Rooms_Shelters_Id",
                         column: x => x.Id,
@@ -231,6 +232,11 @@ namespace OpenBed.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rooms_Id",
+                table: "Rooms",
+                column: "Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

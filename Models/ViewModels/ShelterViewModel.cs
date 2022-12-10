@@ -25,5 +25,25 @@ namespace OpenBed.Models.ViewModels
         public string ShelterHours { get; set; }
         [ForeignKey("Id")]
         public ICollection<Room> Rooms { get; set; }
+        public RoomListViewModel getRooms()
+        {
+            RoomListViewModel roomList = new RoomListViewModel();
+            if (Rooms != null)
+            {
+                roomList.Rooms = Rooms.Select(r => new RoomViewModel
+                {
+                    RoomId = r.RoomId,
+                    RoomType = r.RoomType,
+                    RoomDescription = r.RoomDescription,
+                    NumberOfBeds = r.NumberOfBeds
+                });
+            }
+            else
+            {
+                roomList.Rooms = new List<RoomViewModel>();
+
+            }
+            return roomList;
+        }
     }
 }

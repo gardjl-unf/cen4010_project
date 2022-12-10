@@ -58,6 +58,9 @@
             </div>
             <button class="btn btn-primary btn-lg btn-block" type="submit"><i class="fa fa-save"></i> Save Shelter</button>
         </form>
+        
     </div>
-    Html.Partial("_RoomEditListPartial")
+    <div class="col col-md-4">
+        @Html.Partial("_RoomEditListPartial", Model.getRooms())
+    </div>
 </div>

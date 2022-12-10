@@ -10,8 +10,8 @@ using OpenBed.Data;
 namespace OpenBed.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221209144434_Initial")]
-    partial class Initial
+    [Migration("20221210001030_Room")]
+    partial class Room
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -218,6 +218,10 @@ namespace OpenBed.Migrations
 
             modelBuilder.Entity("OpenBed.Models.Room", b =>
                 {
+                    b.Property<Guid>("RoomId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
@@ -228,10 +232,11 @@ namespace OpenBed.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RoomType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("RoomId");
+
+                    b.HasIndex("Id");
 
                     b.ToTable("Rooms");
                 });

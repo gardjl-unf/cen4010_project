@@ -3,6 +3,7 @@ using OpenBed.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using OpenBed.Service;
 using OpenBed.Models.ViewModels;
 
 namespace OpenBed.Models
@@ -85,5 +86,6 @@ namespace OpenBed.Models
         {
             return Shelters.Count();
         }
+
     }
 }
