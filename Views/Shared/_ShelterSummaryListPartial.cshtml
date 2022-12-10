@@ -2,7 +2,11 @@
 
 @model ShelterListViewModel
 
-@foreach (ShelterViewModel shelter in Model.Shelters)
+@{
+    Layout = null;
+}
+
+@foreach (Shelter shelter in Model.Shelters)
 {
     @Html.Partial("_ShelterSummaryPartial", shelter)
 }

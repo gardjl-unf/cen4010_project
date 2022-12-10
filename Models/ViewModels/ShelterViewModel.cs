@@ -3,14 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+using OpenBed.Models;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace OpenBed.Models.ViewModels
 {
     public class ShelterViewModel
     {
-        [ForeignKey("Id")]
+        [Key]
         public Guid Id { get; set; }
         [Required]
         public string ShelterName { get; set; }
@@ -23,27 +23,6 @@ namespace OpenBed.Models.ViewModels
         public string ShelterWebsite { get; set; }
         public string ShelterDescription { get; set; }
         public string ShelterHours { get; set; }
-        [ForeignKey("Id")]
-        public ICollection<Room> Rooms { get; set; }
-        public RoomListViewModel getRooms()
-        {
-            RoomListViewModel roomList = new RoomListViewModel();
-            if (Rooms != null)
-            {
-                roomList.Rooms = Rooms.Select(r => new RoomViewModel
-                {
-                    RoomId = r.RoomId,
-                    RoomType = r.RoomType,
-                    RoomDescription = r.RoomDescription,
-                    NumberOfBeds = r.NumberOfBeds
-                });
-            }
-            else
-            {
-                roomList.Rooms = new List<RoomViewModel>();
-
-            }
-            return roomList;
-        }
+        public virtual ICollection<Room> Rooms { get; set; } = new List<Room>();
     }
 }

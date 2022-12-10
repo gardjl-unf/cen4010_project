@@ -12,30 +12,13 @@ namespace OpenBed.Models
     {
         private ApplicationDbContext context;
         private readonly IUserService _userService;
+        public IEnumerable<Room> Rooms => context.Rooms;
         public EFRoomRepository(ApplicationDbContext ctx, IUserService usrSvc)
         {
             context = ctx;
             _userService = usrSvc;
         }
-        public IEnumerable<Room> Rooms => context.Rooms;
-        public RoomViewModel GetRoom(Guid id)
-        {
-            Room dbEntry = context.Rooms.FirstOrDefault(r => r.RoomId == id);
-            if (dbEntry == null)
-            {
-                dbEntry = new Room();
-                context.Rooms.Add(dbEntry);
-
-            }
-            return new RoomViewModel
-            {
-                RoomId = id,
-                RoomDescription = dbEntry.RoomDescription,
-                RoomType = dbEntry.RoomType,
-                NumberOfBeds = dbEntry.NumberOfBeds
-            };
-        }
-        public void SaveRoom(RoomViewModel room)
+        public void SaveRoom(Room room)
         {
             Room dbEntry = context.Rooms.FirstOrDefault(r => r.RoomId == room.RoomId);
             if (dbEntry != null)
@@ -57,20 +40,7 @@ namespace OpenBed.Models
             }
             context.SaveChanges();
         }
-        public RoomListViewModel GetRooms(Guid id)
-        {
-            RoomListViewModel rooms = new RoomListViewModel();
-            foreach (Room r in Rooms.Where(r=>r.Id == id))
-            {
-                rooms.Rooms.Append(GetRoom(r.Id));
-            }
-            return rooms;
-        }
-        public int GetRoomCount(Guid id)
-        {
-            return Rooms.Where(r => r.Id == id).Count();
-        }
-        public void Delete(Guid id)
+        public void DeleteRoom(Guid id)
         {
             Room dbEntry = context.Rooms.FirstOrDefault(r => r.RoomId == id);
             if (dbEntry != null)

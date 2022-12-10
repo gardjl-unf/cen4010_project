@@ -10,14 +10,17 @@ namespace OpenBed.Models.ViewModels
 {
     public class RoomViewModel
     {
-        [Required]
+        [ForeignKey("Id")]
         public Guid Id { get; set; }
-        [Required]
         [Key]
         public Guid RoomId { get; set; }
+        [Required]
         public string RoomType { get; set; }
         public string RoomDescription { get; set; }
         [Required]
         public int NumberOfBeds { get; set; }
+        public int NumberOfBedsOccupied { get; set; } = 0;
+        [Required]
+        public virtual Shelter Shelter { get; set; }
     }
 }

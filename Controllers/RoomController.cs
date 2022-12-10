@@ -19,35 +19,42 @@ namespace OpenBed.Controllers
             _userService = usrSvc;
         }
         [Authorize]
-        public PartialViewResult _RoomEditListPartial(RoomListViewModel rooms)
+        public PartialViewResult _RoomEditListPartial(ShelterViewModel? shelter)
         {
-            return PartialView(rooms);
-        }
-        [Authorize]
-        public PartialViewResult _RoomEditListPartial()
-        {
-            RoomListViewModel rooms = _roomRepository.GetRooms(_userService.GetUserId());
-            return PartialView("_RoomEditListPartial", rooms);
+            return PartialView(new RoomListViewModel { Rooms = _roomRepository.Rooms.Where(r => r.Id == _userService.GetUserId()) });
         }
         [HttpPost]
         [Authorize]
-        public PartialViewResult SaveRoom(RoomViewModel room)
+        public ActionResult Save(Room room)
         {
             _roomRepository.SaveRoom(room);
-            return PartialView("_RoomEditPartial", room);
+            return PartialView(_RoomEditListPartial(new RoomListViewModel { Rooms = _roomRepository.Rooms.Where(r => r.Id == _userService.GetUserId()) }));
         }
         [Authorize]
-        public PartialViewResult EditRoom(Guid id)
+        public ActionResult Edit(Guid id)
         {
-            RoomViewModel room = _roomRepository.GetRoom(id);
-            return PartialView("_RoomEditPartial", room);
+            return PartialView(_RoomEditPartial(_roomRepository.Rooms.FirstOrDefault(r => r.RoomId == id)));
         }
-        
-        public PartialViewResult AddRoom(RoomListViewModel room)
+        [Authorize]
+        public ActionResult Add()
         {
-            RoomViewModel newRoom = new RoomViewModel();
-            newRoom.RoomId = Guid.NewGuid();
-            return PartialView("_RoomEditPartial", newRoom);
+            return PartialView(_RoomEditPartial(new Room()));
+        }
+        [Authorize]
+        public ActionResult Delete(Guid id)
+        {
+            _roomRepository.DeleteRoom(id);
+            return PartialView(_RoomEditListPartial(new RoomListViewModel { Rooms = _roomRepository.Rooms.Where(r => r.Id == _userService.GetUserId()) }));
+        }
+        [Authorize]
+        public PartialViewResult _RoomEditListPartial (RoomListViewModel rvlm)
+        {
+            return PartialView(rvlm);
+        }
+        [Authorize]
+        public PartialViewResult _RoomEditPartial (Room room)
+        {
+            return PartialView(room);
         }
     }
 }

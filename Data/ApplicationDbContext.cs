@@ -16,5 +16,7 @@ namespace OpenBed.Data
         }
         public DbSet<Shelter> Shelters { get; set; }
         public DbSet<Room> Rooms { get; set; }
+
+        
     }
 }

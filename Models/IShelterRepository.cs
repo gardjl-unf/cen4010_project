@@ -10,8 +10,5 @@ namespace OpenBed.Models
     {
         IEnumerable<Shelter> Shelters { get; }
         public void SaveShelter(ShelterViewModel shelter);
-        public ShelterViewModel GetShelter(Guid id);
-        public ShelterListViewModel GetShelters();
-        public int GetShelterCount();
     }
 }

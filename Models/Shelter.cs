@@ -7,7 +7,7 @@ namespace OpenBed.Models
 {
     public class Shelter
     {
-        [ForeignKey("Id")]
+        [Key]
         public Guid Id { get; set; }
         [Required]
         public string ShelterName { get; set; }
@@ -20,7 +20,6 @@ namespace OpenBed.Models
         public string ShelterWebsite { get; set; }
         public string ShelterDescription { get; set; }
         public string ShelterHours { get; set; }
-        [ForeignKey("Id")]
-        public ICollection<Room> Rooms { get; set; }
+        public virtual ICollection<Room> Rooms { get; set; } = new List<Room>();
     }
 }

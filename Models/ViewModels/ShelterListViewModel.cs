@@ -7,6 +7,6 @@ namespace OpenBed.Models.ViewModels
 {
     public class ShelterListViewModel
     {
-        public IEnumerable<ShelterViewModel> Shelters { get; set; }
+        public ICollection<Shelter> Shelters { get; set; }
     }
 }

@@ -1,9 +1,20 @@
 ﻿@using OpenBed.Models.ViewModels
 @model RoomListViewModel
 
-@foreach (RoomViewModel room in Model.Rooms)
-{
-    @Html.Partial("_RoomEditPartial", room)
+@{
+    Layout = null;
 }
-
-<a asp-controller="Room" asp-action="AddRoom" class="btn btn-primary btn-lg btn-block"><i class="fa fa-plus"></i> Add Room</a>
+<div class="container w-auto">
+    @if (Model.Rooms != null)
+    {
+        @foreach (Room room in Model.Rooms)
+        {
+            <div class="row">
+            @Html.Partial("_RoomEditPartial", room)
+            </div>
+        }
+    }
+    <div class="row float-left">
+        <a asp-controller="Room" asp-action="Add" class="btn btn-primary btn-lg input-block-level"><i class="fa fa-plus"></i> Add Room</a>
+    </div>
+</div>

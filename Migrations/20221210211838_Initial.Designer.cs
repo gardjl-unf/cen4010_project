@@ -10,7 +10,7 @@ using OpenBed.Data;
 namespace OpenBed.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221210112608_Initial")]
+    [Migration("20221210211838_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -234,9 +234,12 @@ namespace OpenBed.Migrations
                     b.Property<string>("RoomType")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("ShelterId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("RoomId");
 
-                    b.HasIndex("Id");
+                    b.HasIndex("ShelterId");
 
                     b.ToTable("Rooms");
                 });
@@ -336,9 +339,9 @@ namespace OpenBed.Migrations
 
             modelBuilder.Entity("OpenBed.Models.Room", b =>
                 {
-                    b.HasOne("OpenBed.Models.Shelter", null)
+                    b.HasOne("OpenBed.Models.Shelter", "Shelter")
                         .WithMany("Rooms")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("ShelterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

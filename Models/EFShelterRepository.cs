@@ -5,39 +5,19 @@ using System.Collections.Generic;
 using System.Linq;
 using OpenBed.Service;
 using OpenBed.Models.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace OpenBed.Models
 {
     public class EFShelterRepository : IShelterRepository
     {
         private ApplicationDbContext context;
-        public EFShelterRepository(ApplicationDbContext ctx)
+        private readonly IUserService _userService;
+        public IEnumerable<Shelter> Shelters => context.Shelters;
+        public EFShelterRepository(ApplicationDbContext ctx, IUserService usrSvc)
         {
             context = ctx;
-        }
-        public IEnumerable<Shelter> Shelters => context.Shelters;
-        public ShelterViewModel GetShelter(Guid id) {
-            Shelter dbEntry = context.Shelters.FirstOrDefault(s => s.Id == id);
-            if (dbEntry == null)
-            {
-                dbEntry = new Shelter();
-                context.Shelters.Add(dbEntry);
-                
-            }
-            return new ShelterViewModel
-            {
-                Id = id,
-                ShelterName = dbEntry.ShelterName,
-                ShelterAddress = dbEntry.ShelterAddress,
-                ShelterCity = dbEntry.ShelterCity,
-                ShelterState = dbEntry.ShelterState,
-                ShelterZip = dbEntry.ShelterZip,
-                ShelterPhone = dbEntry.ShelterPhone,
-                ShelterEmail = dbEntry.ShelterEmail,
-                ShelterWebsite = dbEntry.ShelterWebsite,
-                ShelterDescription = dbEntry.ShelterDescription,
-                ShelterHours = dbEntry.ShelterHours
-            };
+            _userService = usrSvc;
         }
         public void SaveShelter(ShelterViewModel shelter)
         {
@@ -54,11 +34,12 @@ namespace OpenBed.Models
                 dbEntry.ShelterWebsite = shelter.ShelterWebsite;
                 dbEntry.ShelterDescription = shelter.ShelterDescription;
                 dbEntry.ShelterHours = shelter.ShelterHours;
+                dbEntry.Rooms= shelter.Rooms;
             }
             else
             {
                 context.Add(new Shelter {
-                    Id = shelter.Id,
+                    Id = _userService.GetUserId(),
                     ShelterName = shelter.ShelterName,
                     ShelterAddress = shelter.ShelterAddress,
                     ShelterCity = shelter.ShelterCity,
@@ -68,24 +49,11 @@ namespace OpenBed.Models
                     ShelterEmail = shelter.ShelterEmail,
                     ShelterWebsite = shelter.ShelterWebsite,
                     ShelterDescription = shelter.ShelterDescription,
-                    ShelterHours = shelter.ShelterHours
+                    ShelterHours = shelter.ShelterHours,
+                    Rooms = shelter.Rooms
                 });
             }
             context.SaveChanges();
         }
-        public ShelterListViewModel GetShelters()
-        {
-            ShelterListViewModel shelters = new ShelterListViewModel();
-            foreach (Shelter s in Shelters.ToList())
-            {
-                shelters.Shelters.Append(GetShelter(s.Id));
-            }
-            return shelters;
-        }
-        public int GetShelterCount()
-        {
-            return Shelters.Count();
-        }
-
     }
 }
