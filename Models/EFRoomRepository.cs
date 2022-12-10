@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OpenBed.Data;
 using OpenBed.Models.ViewModels;
+using OpenBed.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,11 @@ namespace OpenBed.Models
     public class EFRoomRepository : IRoomRepository
     {
         private ApplicationDbContext context;
-        public EFRoomRepository(ApplicationDbContext ctx)
+        private readonly IUserService _userService;
+        public EFRoomRepository(ApplicationDbContext ctx, IUserService usrSvc)
         {
             context = ctx;
+            _userService = usrSvc;
         }
         public IEnumerable<Room> Rooms => context.Rooms;
         public RoomViewModel GetRoom(Guid id)
@@ -45,6 +48,7 @@ namespace OpenBed.Models
             {
                 context.Add(new Room
                 {
+                    Id = _userService.GetUserId(),
                     RoomId = room.RoomId,
                     RoomDescription = room.RoomDescription,
                     RoomType = room.RoomType,
@@ -56,7 +60,7 @@ namespace OpenBed.Models
         public RoomListViewModel GetRooms(Guid id)
         {
             RoomListViewModel rooms = new RoomListViewModel();
-            foreach (Room r in Rooms.ToList())
+            foreach (Room r in Rooms.Where(r=>r.Id == id))
             {
                 rooms.Rooms.Append(GetRoom(r.Id));
             }

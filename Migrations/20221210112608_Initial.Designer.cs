@@ -10,8 +10,8 @@ using OpenBed.Data;
 namespace OpenBed.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221210001030_Room")]
-    partial class Room
+    [Migration("20221210112608_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
