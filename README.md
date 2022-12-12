@@ -2,7 +2,9 @@
 # Semester Project for CEN-4010 Software Engineering
 # Univserity of North Florida Fall 2022
 # Database/Code Jason Gardner n01480000
-# CRUD ACTIONS WORK, UNLIKE THE DEMO, FOR ROOMS
+
+* CRUD actions work, unlike the demo, for rooms.
+* CRUD actions work for shelter.
 
 ![1-homepage](https://user-images.githubusercontent.com/77986968/206921475-bb67cfb8-bc84-447b-a469-85e85283549d.PNG)
 ![2-login](https://user-images.githubusercontent.com/77986968/206921125-5049e873-b9e0-44b1-b98d-6485b25cd92b.PNG)
