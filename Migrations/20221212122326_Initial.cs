@@ -179,10 +179,11 @@ namespace OpenBed.Migrations
                 {
                     RoomId = table.Column<Guid>(nullable: false),
                     Id = table.Column<Guid>(nullable: false),
-                    RoomType = table.Column<string>(nullable: true),
+                    RoomType = table.Column<string>(nullable: false),
                     RoomDescription = table.Column<string>(nullable: true),
                     NumberOfBeds = table.Column<int>(nullable: false),
-                    ShelterId = table.Column<Guid>(nullable: false)
+                    NumberOfBedsOccupied = table.Column<int>(nullable: false),
+                    ShelterId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -192,7 +193,7 @@ namespace OpenBed.Migrations
                         column: x => x.ShelterId,
                         principalTable: "Shelters",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
