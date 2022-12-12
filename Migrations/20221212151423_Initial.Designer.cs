@@ -10,7 +10,7 @@ using OpenBed.Data;
 namespace OpenBed.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221212122326_Initial")]
+    [Migration("20221212151423_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

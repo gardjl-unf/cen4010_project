@@ -23,9 +23,9 @@ namespace OpenBed.Models
             Room dbEntry = context.Rooms.FirstOrDefault(r => r.RoomId == room.RoomId);
             if (dbEntry != null)
             {
-                dbEntry.RoomDescription = dbEntry.RoomDescription;
-                dbEntry.RoomType = dbEntry.RoomType;
-                dbEntry.NumberOfBeds = dbEntry.NumberOfBeds;
+                dbEntry.RoomDescription = room.RoomDescription;
+                dbEntry.RoomType = room.RoomType;
+                dbEntry.NumberOfBeds = room.NumberOfBeds;
             }
             else
             {
@@ -35,7 +35,8 @@ namespace OpenBed.Models
                     RoomId = room.RoomId,
                     RoomDescription = room.RoomDescription,
                     RoomType = room.RoomType,
-                    NumberOfBeds = room.NumberOfBeds
+                    NumberOfBeds = room.NumberOfBeds,
+                    NumberOfBedsOccupied = room.NumberOfBedsOccupied
                 });
             }
             context.SaveChanges();

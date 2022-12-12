@@ -36,6 +36,7 @@ namespace OpenBed.Controllers
         {
             return View("_RoomEditPartial", new Room());
         }
+        [HttpPost]
         [Authorize]
         public ActionResult Delete(Guid RoomId)
         {

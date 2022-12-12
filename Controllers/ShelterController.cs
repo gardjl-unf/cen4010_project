@@ -26,7 +26,9 @@ namespace OpenBed.Controllers
             ViewBag.Id = _userService.GetUserId();
             if (shelter == null)
             {
-                return View(new ShelterViewModel());
+                ShelterViewModel svm = new ShelterViewModel();
+                _shelterRepository.SaveShelter(svm);
+                return View(svm);
             }
             else
             {

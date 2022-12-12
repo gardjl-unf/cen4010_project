@@ -14,11 +14,11 @@
         </div>
         <div class="col-md-8 mb-3">
             <label for="RoomDescription">Room Description</label>
-        <textarea type="text" rows="5" class="form-control text-left" asp-f="RoomDescription" placeholder="Description" value="@Model.RoomDescription"></textarea>
+            <textarea type="text" rows="5" class="form-control text-left" asp-for="RoomDescription" placeholder="Description" value="@Model.RoomDescription"></textarea>
         </div>
         <div class="col-md-8 mb-3">
             <label for="NumberOfBeds">Room Capacity</label>
-            <input type="text" class="form-control text-left" asp-f="NumberOfBeds" placeholder="Room Capacity" value="@Model.NumberOfBeds">
+            <input type="text" class="form-control text-left" asp-for="NumberOfBeds" placeholder="Room Capacity" value="@Model.NumberOfBeds">
         </div>
     </div>
     <div class="row mb-3">
