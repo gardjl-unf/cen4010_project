@@ -40,9 +40,9 @@ namespace OpenBed.Models
             }
             context.SaveChanges();
         }
-        public void DeleteRoom(Guid id)
+        public void DeleteRoom(Guid RoomId)
         {
-            Room dbEntry = context.Rooms.FirstOrDefault(r => r.RoomId == id);
+            Room dbEntry = context.Rooms.FirstOrDefault(r => r.RoomId == RoomId);
             if (dbEntry != null)
             {
                 context.Rooms.Remove(dbEntry);

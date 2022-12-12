@@ -37,9 +37,9 @@ namespace OpenBed.Controllers
             return View("_RoomEditPartial", new Room());
         }
         [Authorize]
-        public ActionResult Delete(Guid id)
+        public ActionResult Delete(Guid RoomId)
         {
-            _roomRepository.DeleteRoom(id);
+            _roomRepository.DeleteRoom(RoomId);
             return View("_RoomEditListPartial", new RoomListViewModel { Rooms = _roomRepository.Rooms.Where(r => r.Id == _userService.GetUserId()) });
         }
         [Authorize]
