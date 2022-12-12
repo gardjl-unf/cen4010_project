@@ -6,6 +6,7 @@ using OpenBed.Models;
 using OpenBed.Models.ViewModels;
 using OpenBed.Service;
 using System;
+using System.Threading.Tasks;
 
 namespace OpenBed.Controllers
 {
@@ -18,33 +19,28 @@ namespace OpenBed.Controllers
             _roomRepository = repo;
             _userService = usrSvc;
         }
-        [Authorize]
-        public PartialViewResult _RoomEditListPartial(ShelterViewModel? shelter)
-        {
-            return PartialView(new RoomListViewModel { Rooms = _roomRepository.Rooms.Where(r => r.Id == _userService.GetUserId()) });
-        }
         [HttpPost]
         [Authorize]
         public ActionResult Save(Room room)
         {
             _roomRepository.SaveRoom(room);
-            return PartialView(_RoomEditListPartial(new RoomListViewModel { Rooms = _roomRepository.Rooms.Where(r => r.Id == _userService.GetUserId()) }));
+            return PartialView("_RoomEditListPartial", new RoomListViewModel { Rooms = _roomRepository.Rooms.Where(r => r.Id == _userService.GetUserId()) });
         }
         [Authorize]
         public ActionResult Edit(Guid id)
         {
-            return PartialView(_RoomEditPartial(_roomRepository.Rooms.FirstOrDefault(r => r.RoomId == id)));
+            return View("_RoomEditPartial", _roomRepository.Rooms.FirstOrDefault(r => r.RoomId == id));
         }
         [Authorize]
         public ActionResult Add()
         {
-            return PartialView(_RoomEditPartial(new Room()));
+            return View("_RoomEditPartial", new Room());
         }
         [Authorize]
         public ActionResult Delete(Guid id)
         {
             _roomRepository.DeleteRoom(id);
-            return PartialView(_RoomEditListPartial(new RoomListViewModel { Rooms = _roomRepository.Rooms.Where(r => r.Id == _userService.GetUserId()) }));
+            return View("_RoomEditListPartial", new RoomListViewModel { Rooms = _roomRepository.Rooms.Where(r => r.Id == _userService.GetUserId()) });
         }
         [Authorize]
         public PartialViewResult _RoomEditListPartial (RoomListViewModel rvlm)

@@ -20,7 +20,6 @@ namespace OpenBed.Models
         [Required]
         public int NumberOfBeds { get; set; }
         public int NumberOfBedsOccupied { get; set; } = 0;
-        [Required]
         public virtual Shelter Shelter { get; set; }
     }
 }

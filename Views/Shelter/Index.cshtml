@@ -1,4 +1,6 @@
 ﻿@using OpenBed.Models.ViewModels
+@using OpenBed.Service
+
 @model ShelterViewModel
 
 @{
@@ -60,7 +62,7 @@
             </form>
         </div>
         <div class="col col-md-4">
-            @Html.Partial("_RoomEditListPartial", new RoomListViewModel { Rooms = Model.Rooms })
+            @Html.Partial("_RoomEditListPartial", new RoomListViewModel { Rooms = Model.Rooms.Where(r=> r.Id == ViewBag.Id) })
         </div>
     </div>
 </div>

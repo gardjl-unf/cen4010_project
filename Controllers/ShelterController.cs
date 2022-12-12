@@ -23,6 +23,7 @@ namespace OpenBed.Controllers
         public ViewResult Index()
         {
             Shelter shelter = _shelterRepository.Shelters.FirstOrDefault(s => s.Id == _userService.GetUserId());
+            ViewBag.Id = _userService.GetUserId();
             if (shelter == null)
             {
                 return View(new ShelterViewModel());
@@ -41,7 +42,7 @@ namespace OpenBed.Controllers
                     ShelterEmail = shelter.ShelterEmail,
                     ShelterWebsite = shelter.ShelterWebsite,
                     ShelterDescription = shelter.ShelterDescription,
-                    Rooms = _roomRepository.Rooms.Where(r => r.Id == shelter.Id).ToList()
+                    Rooms = _roomRepository.Rooms.Where(r => r.Id == _userService.GetUserId()).ToList()
                 });
             }
         }
